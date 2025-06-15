@@ -3,7 +3,7 @@ import { asyncHandler } from "../../utils/asynchandler.js";
 import { ApiResponse } from "../../utils/apiresponse.js"
 
 const createAdmin = asyncHandler(async(req,res)=>{
-    const {username,password} = req.user;
+    const {username,password} = req.body;
     
     const createadmin = await Admin.create({username:username,password:password});
 
