@@ -12,13 +12,13 @@ import mongoose from "mongoose";
 
 
 const createBank = asyncHandler(async(req,res)=>{
-    const { bank_name , home_lone, mortgage_lone,commercial_lone,industrial_lone,login_fees,insurance,tenor_salaried,tenor_self_employed,geo_limit,age,legal_charges,valuation_charges,extra_work }  = req.body;
+    const { bank_name , home_loan, mortgage_loan,commercial_loan,industrial_loan,login_fees,insurance,tenor_salaried,tenor_self_employed,geo_limit,age,legal_charges,valuation_charges,extra_work }  = req.body;
 
     //creating  objects
-    const home_lone_id = await  objectMaker(HomeLoan , home_lone ,res);
-    const mortgage_lone_id =  await objectMaker(MortgageLoan ,mortgage_lone,res);
-    const commercial_lone_id = await  objectMaker(CommercialPurchase , commercial_lone ,res);
-    const industrial_lone_id = await  objectMaker(IndustrialPurchase,industrial_lone ,res);
+    const home_loan_id = await  objectMaker(HomeLoan , home_loan ,res);
+    const mortgage_loan_id =  await objectMaker(MortgageLoan ,mortgage_loan,res);
+    const commercial_loan_id = await  objectMaker(CommercialPurchase , commercial_loan ,res);
+    const industrial_loan_id = await  objectMaker(IndustrialPurchase,industrial_loan ,res);
     const insurance_id = await  objectMaker(Insurance ,insurance ,res);
     const age_id = await objectMaker(AgeCriteria ,age,res);
 
@@ -26,10 +26,10 @@ const createBank = asyncHandler(async(req,res)=>{
     const createBank =  await  Bank.create(
         {
             bank_name,
-            home_lone:home_lone_id,
-            mortgage_lone:mortgage_lone_id,
-            commercial_lone:commercial_lone_id,
-            industrial_lone:industrial_lone_id,
+            home_loan:home_loan_id,
+            mortgage_loan:mortgage_loan_id,
+            commercial_loan:commercial_loan_id,
+            industrial_loan:industrial_loan_id,
             login_fees,
             insurance:insurance_id,
             tenor_salaried,
@@ -63,53 +63,53 @@ const getAllBanks = asyncHandler(async(req,res)=>{
       {
     $lookup: {
       from: "homeloans",
-      localField: "home_lone",
+      localField: "home_loan",
       foreignField: "_id",
-      as: "home_lone"
+      as: "home_loan"
     }
   },
   {
     $addFields: {
-      home_lone: { $arrayElemAt: ["$home_lone", 0] }
+      home_loan: { $arrayElemAt: ["$home_loan", 0] }
     }
   },
   {
     $lookup: {
       from: "mortgageloans",
-      localField: "mortgage_lone",
+      localField: "mortgage_loan",
       foreignField: "_id",
-      as: "mortgage_lone"
+      as: "mortgage_loan"
     }
   },
   {
     $addFields: {
-      mortgage_lone: { $arrayElemAt: ["$mortgage_lone", 0] }
+      mortgage_loan: { $arrayElemAt: ["$mortgage_loan", 0] }
     }
   },
   {
     $lookup: {
       from: "commercialpurchases",
-      localField: "commercial_lone",
+      localField: "commercial_loan",
       foreignField: "_id",
-      as: "commercial_lone"
+      as: "commercial_loan"
     }
   },
   {
     $addFields: {
-      commercial_lone: {$arrayElemAt:["$commercial_lone" ,0]}
+      commercial_loan: {$arrayElemAt:["$commercial_loan" ,0]}
     }
   },
   {
     $lookup: {
       from: "industrialpurchases",
-      localField: "industrial_lone",
+      localField: "industrial_loan",
       foreignField: "_id",
-      as: "industrial_lone"
+      as: "industrial_loan"
     }
   },
   {
     $addFields: {
-      industrial_lone: {$arrayElemAt:["$industrial_lone",0]}
+      industrial_loan: {$arrayElemAt:["$industrial_loan",0]}
     }
   },
   {
@@ -156,53 +156,53 @@ const searchBank = asyncHandler(async(req,res)=>{
   {
     $lookup: {
       from: "homeloans",
-      localField: "home_lone",
+      localField: "home_loan",
       foreignField: "_id",
-      as: "home_lone"
+      as: "home_loan"
     }
   },
   {
     $addFields: {
-      home_lone: { $arrayElemAt: ["$home_lone", 0] }
+      home_loan: { $arrayElemAt: ["$home_loan", 0] }
     }
   },
   {
     $lookup: {
       from: "mortgageloans",
-      localField: "mortgage_lone",
+      localField: "mortgage_loan",
       foreignField: "_id",
-      as: "mortgage_lone"
+      as: "mortgage_loan"
     }
   },
   {
     $addFields: {
-      mortgage_lone: { $arrayElemAt: ["$mortgage_lone", 0] }
+      mortgage_loan: { $arrayElemAt: ["$mortgage_loan", 0] }
     }
   },
   {
     $lookup: {
       from: "commercialpurchases",
-      localField: "commercial_lone",
+      localField: "commercial_loan",
       foreignField: "_id",
-      as: "commercial_lone"
+      as: "commercial_loan"
     }
   },
   {
     $addFields: {
-      commercial_lone: {$arrayElemAt:["$commercial_lone" ,0]}
+      commercial_loan: {$arrayElemAt:["$commercial_loan" ,0]}
     }
   },
   {
     $lookup: {
       from: "industrialpurchases",
-      localField: "industrial_lone",
+      localField: "industrial_loan",
       foreignField: "_id",
-      as: "industrial_lone"
+      as: "industrial_loan"
     }
   },
   {
     $addFields: {
-      industrial_lone: {$arrayElemAt:["$industrial_lone",0]}
+      industrial_loan: {$arrayElemAt:["$industrial_loan",0]}
     }
   },
   {
@@ -254,4 +254,4 @@ export {createBank,searchBank,getAllBanks};
 
 
 
-//const bankWithDetails = await Bank.findById(bankId).populate('home_lone mortgage_lone insurance');
+//const bankWithDetails = await Bank.findById(bankId).populate('home_loan mortgage_loan insurance');
