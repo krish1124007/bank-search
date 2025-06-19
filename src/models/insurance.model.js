@@ -26,7 +26,7 @@ const InsuranceDetailSchema = new mongoose.Schema({
 
 // Main Insurance schema
 const InsuranceSchema = new mongoose.Schema({
-    life_insurence: {
+    life_insurance: {
         type: InsuranceDetailSchema,
         required: true
     },

@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 const MortgageLoanSchema = new mongoose.Schema({
     // Residential
-    mortagage_loan:{
+    mortgage_loan:{
         type:Boolean,
         required:true,
         default:false
