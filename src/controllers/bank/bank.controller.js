@@ -59,7 +59,86 @@ const createBank = asyncHandler(async(req,res)=>{
 })
 
 const getAllBanks = asyncHandler(async(req,res)=>{
-    const banks = await Bank.find();
+    const banks = await Bank.aggregate([
+      {
+    $lookup: {
+      from: "homeloans",
+      localField: "home_lone",
+      foreignField: "_id",
+      as: "home_lone"
+    }
+  },
+  {
+    $addFields: {
+      home_lone: { $arrayElemAt: ["$home_lone", 0] }
+    }
+  },
+  {
+    $lookup: {
+      from: "mortgageloans",
+      localField: "mortgage_lone",
+      foreignField: "_id",
+      as: "mortgage_lone"
+    }
+  },
+  {
+    $addFields: {
+      mortgage_lone: { $arrayElemAt: ["$mortgage_lone", 0] }
+    }
+  },
+  {
+    $lookup: {
+      from: "commercialpurchases",
+      localField: "commercial_lone",
+      foreignField: "_id",
+      as: "commercial_lone"
+    }
+  },
+  {
+    $addFields: {
+      commercial_lone: {$arrayElemAt:["$commercial_lone" ,0]}
+    }
+  },
+  {
+    $lookup: {
+      from: "industrialpurchases",
+      localField: "industrial_lone",
+      foreignField: "_id",
+      as: "industrial_lone"
+    }
+  },
+  {
+    $addFields: {
+      industrial_lone: {$arrayElemAt:["$industrial_lone",0]}
+    }
+  },
+  {
+    $lookup: {
+      from: "insurances",
+      localField: "insurance",
+      foreignField: "_id",
+      as: "insurance"
+    }
+  },
+  {
+    $addFields: {
+      insurance: {$arrayElemAt:["$insurance", 0]}
+    }
+  },
+  {
+    $lookup: {
+      from: "agecriterias",
+      localField: "age",
+      foreignField: "_id",
+      as: "age"
+    }
+  },
+  {
+    $addFields: {
+      age: {$arrayElemAt:["$age",0]}
+    }
+  }
+    ]);
 
     return res.status(200)
     .json(
