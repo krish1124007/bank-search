@@ -5,20 +5,20 @@ const BankSchema = new mongoose.Schema({
         type:String,
         required:true
     },
-    home_lone:
+    home_loan:
     {
         type:mongoose.Schema.Types.ObjectId,
         ref:"HomeLone"
     },
-    mortgage_lone:{
+    mortgage_loan:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"MortgageLoan"
     },
-    commercial_lone:{
+    commercial_loan:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"CommercialPurchase"
     },
-    industrial_lone:{
+    industrial_loan:{
         type:mongoose.Schema.Types.ObjectId,
         ref:"IndustrialPurchase"
     } ,
