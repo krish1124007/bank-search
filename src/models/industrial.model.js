@@ -1,6 +1,10 @@
 import mongoose from "mongoose";
 
 const IndustrialPurchaseSchema = new mongoose.Schema({
+    industrial_loan:{
+        type:Boolean,
+        default:false
+    },
     builder_purchase: {
         type: Boolean,
         required: true,

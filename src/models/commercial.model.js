@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const CommercialPurchaseSchema = new mongoose.Schema({
-    commercial:{
+    commercial_loan:{
         type:Boolean,
         required:true,
         default:false

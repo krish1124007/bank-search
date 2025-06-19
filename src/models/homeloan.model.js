@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const HomeLoanSchema = new mongoose.Schema({
-    home_lone:{
+    home_loan:{
         type:Boolean,
         required:true,
         default:false
