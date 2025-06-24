@@ -23,9 +23,8 @@ const BankSchema = new mongoose.Schema({
         ref:"IndustrialPurchase"
     } ,
     login_fees:{
-        type:Boolean,
+        type:String,
         required:true,
-        required:true
     },
     insurance:{
         type:mongoose.Schema.Types.ObjectId,
@@ -71,9 +70,9 @@ const BankSchema = new mongoose.Schema({
         default:"0"
     },
     extra_work:{
-        type:Boolean,
+        type:String,
         required:true,
-        default:false
+        default:"0"
     }
 })
 
