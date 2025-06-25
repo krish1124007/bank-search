@@ -21,9 +21,11 @@ const saveUserInforamtion = asyncHandler(async()=>{
     .json(
       new ApiResponse(500 ,"something problem with the save user data" ,{success:false , data:"userObjectNotSaveError"})
     )
+  }
 
     return res.status(200)
     .json(
       new ApiResponse(200,"user object save successfully",{success:true , data:userInfoSave})
+    )
   
 })
