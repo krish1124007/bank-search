@@ -82,9 +82,21 @@ const HomeLoanSchema = new mongoose.Schema({
 
     },
     nir_home_loan:{
-        type:Boolean,
-        required:true,
-        default:false
+        salary_in_dollar:{
+            type:Boolean,
+            default:false
+        },
+        visa_type:{
+            type:String
+        }
+    },
+    layout_plan:{
+        type:String,
+        required:false
+    },
+    unit_plan:{
+        type:String,
+        required:false
     }
 })
 
