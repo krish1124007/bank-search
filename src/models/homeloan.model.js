@@ -97,6 +97,9 @@ const HomeLoanSchema = new mongoose.Schema({
     unit_plan:{
         type:String,
         required:false
+    },
+    policy_salaried:{
+        type
     }
 })
 

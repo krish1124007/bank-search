@@ -5,6 +5,10 @@ const BankSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    contact_number:{
+        type:String,
+        required:true
+    },
     home_loan:
     {
         type:mongoose.Schema.Types.ObjectId,
@@ -73,6 +77,15 @@ const BankSchema = new mongoose.Schema({
         type:String,
         required:true,
         default:"0"
+    },
+    parallel_funding:{
+        type:String,
+        required:true,
+        default:"0"
+    },
+    policy:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Policy"
     }
 })
 
