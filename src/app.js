@@ -1,8 +1,9 @@
 import express from "express";
 import dotenv from "dotenv";
+import cors from "cors"
 import { bank_router } from "./routes/bank.routes.js";
 import { admin_router } from "./routes/admin.routes.js";
-import cors from "cors"
+import { user_router } from "./routes/user.routes.js";
 dotenv.config({});
 
 
@@ -17,6 +18,7 @@ app.use(cors({
 //routers
 app.use('/api/v1/bank',bank_router);
 app.use('/api/v1/admin',admin_router);
+app.use('/api/v1/user',user_router);
 
 
 export {app};
