@@ -21,30 +21,30 @@ const CommercialPurchaseSchema = new mongoose.Schema({
         required: true,
         default: false
     },
-    interest_rate: {
+   interest_rate: {
         salaried: {
             from: {
-                type: String,
+                type: Number,
                 required: true
             },
             to: {
-                type: String,
+                type: Number,
                 required: true
             }
         },
         non_salaried: {
             from: {
-                type: String,
+                type: Number,
                 required: true
             },
             to: {
-                type: String,
+                type: Number,
                 required: true
             }
         }
 
 
-    }
+    },
 
 });
 

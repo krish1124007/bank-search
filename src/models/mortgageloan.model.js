@@ -151,27 +151,27 @@ const MortgageLoanSchema = new mongoose.Schema({
     interest_rate: {
         salaried: {
             from: {
-                type: String,
+                type: Number,
                 required: true
             },
             to: {
-                type: String,
+                type: Number,
                 required: true
             }
         },
         non_salaried: {
             from: {
-                type: String,
+                type: Number,
                 required: true
             },
             to: {
-                type: String,
+                type: Number,
                 required: true
             }
         }
 
 
-    }
+    },
 });
 
 export const MortgageLoan = mongoose.model("MortgageLoan", MortgageLoanSchema);

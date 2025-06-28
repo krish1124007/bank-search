@@ -10,7 +10,15 @@ import { AgeCriteria } from "../../models/age.model.js";
 import { Policy } from "../../models/policy.model.js";
 import { objectMaker } from "../../utils/objectmaker.js";
 
-
+const modesl = {
+  HomeLoan,
+  MortgageLoan,
+  IndustrialPurchase,
+  CommercialPurchase,
+  Insurance,
+  AgeCriteria,
+  Policy
+}
 
 const createBank = asyncHandler(async (req, res) => {
   const { bank_name, home_loan, mortgage_loan, commercial_loan, industrial_loan, login_fees, insurance, tenor_salaried, tenor_self_employed, geo_limit, age, legal_charges, valuation_charges, extra_work, policy, parallel_funding, contact_number } = req.body;
@@ -166,6 +174,21 @@ const getAllBanks = asyncHandler(async (req, res) => {
 const searchBank = asyncHandler(async (req, res) => {
 
   const data = req.body;
+  const userobject = {}
+  for(const [key, value] of Object.entries(data)){
+     if (typeof value === 'object' && value !== null && "$lte" in value)
+
+     {
+      userobject[key] = { $lte: value["$lte"] }  
+     }
+     else if('$gte' in value)
+     {
+      userobject[key] = { $gte: value["$gte"] }
+     }
+     else{
+      userobject[key] = value;
+     }
+  }
 
 
   const bank_data = await Bank.aggregate(
@@ -262,7 +285,7 @@ const searchBank = asyncHandler(async (req, res) => {
         }
       },
       {
-        $match: data
+        $match: userobject
       }
     ]
 
@@ -277,7 +300,64 @@ const searchBank = asyncHandler(async (req, res) => {
 })
 
 
-export { createBank, searchBank, getAllBanks };
+// Insurance:{
+//   id: insurance_id,,
+//   udateobject:{}
+// }
+
+
+const updateBank = asyncHandler(async (req,res)=>{
+  const {bankId , updateBodyObject, outerobjectvalues} = req.body;
+
+  for(const [key, value] of Object.entries(updateBodyObject)){
+    let model = modesl[key];
+    const update_proccsing =  await model.findByIdAndUpdate(value.id, value.updateobject, { new: true });
+  }
+  for(const  [key,value] of Object.entries(outerobjectvalues)){
+    const update_outer = await Bank.findByIdAndUpdate(bankId, { [key]: value }, { new: true });
+  }
+
+  return res.status(200)
+  .json(
+    new ApiResponse(200, "Bank Updated Successfully", { success: true, data: "changed" })
+  )
+})
+
+const deleteBank = asyncHandler(async (req, res) => {
+  const { bankId } = req.body;
+
+  const deleteBank = await Bank.findByIdAndDelete(bankId);
+  if (!deleteBank) {
+    return res.status(500)
+      .json(
+        new ApiResponse(500, "something problem to delete bank", { success: false, data: "BankNotDeleteError" })
+      )
+  }
+
+  return res.status(200)
+    .json(
+      new ApiResponse(200, "Bank Deleted Successfully", { success: true, data: deleteBank })
+    )
+})
+
+
+
+const deleteAllBanks = asyncHandler(async (req, res) => {
+  const deleteBank = await Bank.deleteMany({});
+  if (!deleteBank) {
+    return res.status(500)
+      .json(
+        new ApiResponse(500, "something problem to delete bank", { success: false, data: "BankNotDeleteError" })
+      )
+  }
+
+  return res.status(200)
+    .json(
+      new ApiResponse(200, "All Banks Deleted Successfully", { success: true, data: deleteBank })
+    )
+})
+
+export { createBank, searchBank, getAllBanks,deleteAllBanks , updateBank , deleteBank };
 
 
 

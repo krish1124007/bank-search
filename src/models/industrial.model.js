@@ -18,27 +18,27 @@ const IndustrialPurchaseSchema = new mongoose.Schema({
     interest_rate: {
         salaried: {
             from: {
-                type: String,
+                type: Number,
                 required: true
             },
             to: {
-                type: String,
+                type: Number,
                 required: true
             }
         },
         non_salaried: {
             from: {
-                type: String,
+                type: Number,
                 required: true
             },
             to: {
-                type: String,
+                type: Number,
                 required: true
             }
         }
 
 
-    }
+    },
 });
 
 export const IndustrialPurchase = mongoose.model("IndustrialPurchase", IndustrialPurchaseSchema);

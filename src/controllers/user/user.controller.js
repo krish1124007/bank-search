@@ -4,7 +4,7 @@ import { asyncHandler } from "../../utils/asynchandler.js";
 
 
 
-const saveUserInforamtion = asyncHandler(async()=>{
+const saveUserInforamtion = asyncHandler(async(req,res)=>{
   const {name , contact_number ,search_objects } = req.body;
   if(!name && !contact_number)
   {
@@ -18,17 +18,22 @@ const saveUserInforamtion = asyncHandler(async()=>{
 
   if(isUserExist)
   {
-    isUserExist.search_objects.push(...search_objects);
-    const userUpdate = await isUserExist.save();
+    const parsedObject = JSON.stringify(req.body.search_objects[0]);
+    // console.log(parsedObject)
+    isUserExist.search_objects.push(parsedObject);
     return res.status(200)
     .json(
-      new ApiResponse(200,"user object update successfully",{success:true , data:userUpdate})
+      new ApiResponse(200,"user object update successfully",{success:true , data:"userupdates"})
     )
   }
 
   const userInfoSave = await User.create({name , contact_number});
-  userInfoSave.search_objects.push(...search_objects);
-  await userInfoSave.save();
+  if(search_objects && search_objects.length > 0)
+  {
+    const parsedObject = JSON.stringify(req.body.search_objects[0]);
+    console.log(parsedObject)
+    userInfoSave.search_objects.push(parsedObject);
+  }
 
   if(!userInfoSave)
   {

@@ -60,21 +60,21 @@ const HomeLoanSchema = new mongoose.Schema({
     interest_rate: {
         salaried: {
             from: {
-                type: String,
+                type: Number,
                 required: true
             },
             to: {
-                type: String,
+                type: Number,
                 required: true
             }
         },
         non_salaried: {
             from: {
-                type: String,
+                type: Number,
                 required: true
             },
             to: {
-                type: String,
+                type: Number,
                 required: true
             }
         }
@@ -91,11 +91,11 @@ const HomeLoanSchema = new mongoose.Schema({
         }
     },
     layout_plan:{
-        type:String,
+        type:Number,
         required:false
     },
     unit_plan:{
-        type:String,
+        type:Number,
         required:false
     }
 })

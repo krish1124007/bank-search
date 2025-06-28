@@ -27,7 +27,7 @@ const BankSchema = new mongoose.Schema({
         ref:"IndustrialPurchase"
     } ,
     login_fees:{
-        type:String,
+        type:Number,
         required:true,
     },
     insurance:{
@@ -36,27 +36,27 @@ const BankSchema = new mongoose.Schema({
     },
     tenor_salaried:{
         to:{
-            type:String,
+            type:Number,
             required:true,
         },
         from :{
-            type:String,
+            type:Number,
             required:true
         }
     },
     tenor_self_employed:{
         to:{
-            type:String,
+            type:Number,
             required:true
         },
         from:{
-            type:String,
+            type:Number,
             required:true
 
         }
     },
     geo_limit:{
-        type:String,
+        type:Number,
         required:true
     },
     age:{
@@ -64,24 +64,24 @@ const BankSchema = new mongoose.Schema({
         ref:"AgeCriteria",
     },
     legal_charges:{
-        type:String,
+        type:Number,
         required:true,
-        default:"0"
+        default:0
     },
     valuation_charges:{
-        type:String,
+        type:Number,
         required:true,
-        default:"0"
+        default:0
     },
     extra_work:{
-        type:String,
+        type:Number,
         required:true,
-        default:"0"
+        default:0
     },
     parallel_funding:{
-        type:String,
+        type:Number,
         required:true,
-        default:"0"
+        default:0
     },
     policy:{
         type:mongoose.Schema.Types.ObjectId,
