@@ -175,20 +175,16 @@ const searchBank = asyncHandler(async (req, res) => {
 
   const data = req.body;
   const userobject = {}
-  for(const [key, value] of Object.entries(data)){
-     if (typeof value === 'object' && value !== null && "$lte" in value)
-
-     {
-      userobject[key] = { $lte: value["$lte"] }  
-     }
-     else if('$gte' in value)
-     {
-      userobject[key] = { $gte: value["$gte"] }
-     }
-     else{
-      userobject[key] = value;
-     }
+  for (const [key, value] of Object.entries(data)) {
+  if (typeof value === 'object' && value !== null && '$lte' in value) {
+    userobject[key] = { $lte: value['$lte'] };
+  } else if (typeof value === 'object' && value !== null && '$gte' in value) {
+    userobject[key] = { $gte: value['$gte'] };
+  } else {
+    userobject[key] = value;
   }
+}
+
 
 
   const bank_data = await Bank.aggregate(
