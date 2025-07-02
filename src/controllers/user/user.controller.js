@@ -19,8 +19,9 @@ const saveUserInforamtion = asyncHandler(async(req,res)=>{
   if(isUserExist)
   {
     const parsedObject = JSON.stringify(req.body.search_objects[0]);
-    // console.log(parsedObject)
+  
     isUserExist.search_objects.push(parsedObject);
+    isUserExist.save();
     return res.status(200)
     .json(
       new ApiResponse(200,"user object update successfully",{success:true , data:"userupdates"})
@@ -31,8 +32,9 @@ const saveUserInforamtion = asyncHandler(async(req,res)=>{
   if(search_objects && search_objects.length > 0)
   {
     const parsedObject = JSON.stringify(req.body.search_objects[0]);
-    console.log(parsedObject)
+  
     userInfoSave.search_objects.push(parsedObject);
+    userInfoSave.save();
   }
 
   if(!userInfoSave)
@@ -67,6 +69,7 @@ const getUserInformation = asyncHandler(async(req , res)=>{
         new ApiResponse(404,"user not found",{success:false , data:"userNotFoundError"})
       )
     }
+   
     return res.status(200)
     .json(
       new ApiResponse(200,"user information found successfully",{success:true , data:userInfo})
