@@ -157,6 +157,10 @@ const MortgageLoanSchema = new mongoose.Schema({
             to: {
                 type: Number,
                 required: true
+            },
+            foir:{
+                type:Number,
+                required:true
             }
         },
         non_salaried: {
@@ -167,11 +171,36 @@ const MortgageLoanSchema = new mongoose.Schema({
             to: {
                 type: Number,
                 required: true
+            },
+            foir:{
+                type:Number,
+                required:true
             }
         }
 
 
     },
+     LTV:{
+        to:{
+            type:Number,
+            default:0
+        },
+        from:{
+            type:Number,
+            default:0
+        }
+    }
+    ,
+    loan_ticket_size:{
+        to:{
+            type:Number,
+            default:0
+        },
+        from:{
+            type:Number,
+            default:0
+        }
+    }
 });
 
 export const MortgageLoan = mongoose.model("MortgageLoan", MortgageLoanSchema);

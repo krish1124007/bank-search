@@ -68,6 +68,11 @@ const BankSchema = new mongoose.Schema({
         required:true,
         default:0
     },
+    processing_fees:{
+        type:Number,
+        required:true,
+        default:0
+    },
     valuation_charges:{
         type:Number,
         required:true,
