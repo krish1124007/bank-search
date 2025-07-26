@@ -1,98 +1,136 @@
 import mongoose from "mongoose";
 
 const BankSchema = new mongoose.Schema({
-    bank_name:{
-        type:String,
-        required:true
+    bank_details: {
+        bank_sm_name: {
+            type: String,
+            required: true
+        },
+        bank_sm_contact_number: {
+            type: String,
+            required: true
+        },
+        bank_rsm_name: {
+            type: String,
+            required: true
+        },
+        bank_rsm_contact_number: {
+            type: String,
+            required: true
+        }
     },
-    contact_number:{
-        type:String,
-        required:true
+    contact_number: {
+        type: String,
+        required: true
     },
     home_loan:
     {
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"HomeLone"
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "HomeLone"
     },
-    mortgage_loan:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"MortgageLoan"
+    mortgage_loan: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "MortgageLoan"
     },
-    commercial_loan:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"CommercialPurchase"
+    commercial_loan: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "CommercialPurchase"
     },
-    industrial_loan:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"IndustrialPurchase"
-    } ,
-    login_fees:{
-        type:Number,
-        required:true,
+    industrial_loan: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "IndustrialPurchase"
     },
-    insurance:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Insurance"
+    construction_finance:{
+        type:Boolean,
+        required:true
     },
-    tenor_salaried:{
-        to:{
-            type:Number,
-            required:true,
-        },
-        from :{
-            type:Number,
-            required:true
-        }
+    cgtmse_loan:{
+        type:Boolean,
+        required:true
     },
-    tenor_self_employed:{
-        to:{
-            type:Number,
-            required:true
-        },
-        from:{
+    machinary_loan:{
+        type:Boolean,
+        required:true
+    },
+    login_fees: {
+        salaried:{
             type:Number,
             required:true
 
+        },
+        non_salaried:{
+            type:Number,
+            required:true
         }
     },
-    geo_limit:{
-        type:Number,
-        required:true
+    insurance: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Insurance"
     },
-    age:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"AgeCriteria",
+    tenor_salaried: {
+        to: {
+            type: Number,
+            required: true,
+        },
+        from: {
+            type: Number,
+            required: true
+        }
     },
-    legal_charges:{
+    tenor_self_employed: {
+        to: {
+            type: Number,
+            required: true
+        },
+        from: {
+            type: Number,
+            required: true
+
+        }
+    },
+    geo_limit: {
+        type: Number,
+        required: true
+    },
+    age: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "AgeCriteria",
+    },
+    legal_charges: {
+        type: Number,
+        required: true,
+        default: 0
+    },
+    processing_fees: {
+        type: Number,
+        required: true,
+        default: 0
+    },
+    valuation_charges: {
+        type: Number,
+        required: true,
+        default: 0
+    },
+    extra_work: {
+        type: Number,
+        required: true,
+        default: 0
+    },
+    parallel_funding: {
+        type: Number,
+        required: true,
+        default: 0
+    },
+    dod:{
         type:Number,
-        required:true,
         default:0
     },
-    processing_fees:{
-        type:Number,
-        required:true,
-        default:0
-    },
-    valuation_charges:{
-        type:Number,
-        required:true,
-        default:0
-    },
-    extra_work:{
-        type:Number,
-        required:true,
-        default:0
-    },
-    parallel_funding:{
-        type:Number,
-        required:true,
-        default:0
-    },
-    policy:{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Policy"
+    policy: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Policy"
     }
+    
 })
 
 
-export const Bank = mongoose.model("Bank" , BankSchema)
+export const Bank = mongoose.model("Bank", BankSchema)

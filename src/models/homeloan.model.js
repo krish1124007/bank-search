@@ -107,11 +107,15 @@ const HomeLoanSchema = new mongoose.Schema({
         required:false
     },
     LTV:{
-        to:{
+        OneToThirty:{
             type:Number,
             default:0
         },
-        from:{
+        ThirtyToSevFive:{
+            type:Number,
+            default:0
+        },
+        SevFiveToAbove:{
             type:Number,
             default:0
         }
