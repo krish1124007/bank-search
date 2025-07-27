@@ -38,16 +38,13 @@ const BankSchema = new mongoose.Schema({
         ref: "IndustrialPurchase"
     },
     construction_finance_loan:{
-        type:Boolean,
-        required:true
+        type:Boolean
     },
     cgtmse_loan:{
-        type:Boolean,
-        required:true
+        type:Boolean
     },
     machinary_loan:{
-        type:Boolean,
-        required:true
+        type:Boolean
     },
     login_fees: {
         salaried:{
