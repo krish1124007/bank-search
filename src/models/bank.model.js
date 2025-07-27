@@ -19,10 +19,7 @@ const BankSchema = new mongoose.Schema({
             required: true
         }
     },
-    contact_number: {
-        type: String,
-        required: true
-    },
+   
     home_loan:
     {
         type: mongoose.Schema.Types.ObjectId,
@@ -40,7 +37,7 @@ const BankSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: "IndustrialPurchase"
     },
-    construction_finance:{
+    construction_finance_loan:{
         type:Boolean,
         required:true
     },
