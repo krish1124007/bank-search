@@ -47,12 +47,12 @@ const BankSchema = new mongoose.Schema({
         type:Boolean
     },
     login_fees: {
-        salaried:{
+        login_salaried:{
             type:Number,
             required:true
 
         },
-        non_salaried:{
+        login_self_employed:{
             type:Number,
             required:true
         }
