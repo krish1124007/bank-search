@@ -114,7 +114,7 @@ const HomeLoanSchema = new mongoose.Schema({
          from:{
             type:Number
          },
-         pers:{
+         percentage:{
             type:Number
          }
 

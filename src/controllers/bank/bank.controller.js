@@ -177,12 +177,21 @@ const getAllBanks = asyncHandler(async (req, res) => {
 const searchBank = asyncHandler(async (req, res) => {
 
   const data = req.body;
-  const userobject = {}
-  for (const [key, value] of Object.entries(data)) {
-  if (typeof value === 'object' && value !== null && '$lte' in value) {
-    userobject[key] = { $lte: value['$lte'] };
-  } else if (typeof value === 'object' && value !== null && '$gte' in value) {
-    userobject[key] = { $gte: value['$gte'] };
+
+ const userobject = {};
+
+for (const [key, value] of Object.entries(data)) {
+  if (typeof value === 'object' && value !== null) {
+    if ('$lte' in value || '$gte' in value) {
+      userobject[key] = {};
+      if ('$lte' in value) userobject[key]['$lte'] = value['$lte'];
+      if ('$gte' in value) userobject[key]['$gte'] = value['$gte'];
+    } else if ('$elemMatch' in value) {
+      // directly use $elemMatch for arrays like LTV
+      userobject[key] = { $elemMatch: value["$elemMatch"] };
+    } else {
+      userobject[key] = value;
+    }
   } else {
     userobject[key] = value;
   }
