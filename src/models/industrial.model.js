@@ -47,7 +47,7 @@ const IndustrialPurchaseSchema = new mongoose.Schema({
 
 
     },
-       LTV:[
+     LTV:[
         {
          to:{
             type:Number
@@ -55,7 +55,7 @@ const IndustrialPurchaseSchema = new mongoose.Schema({
          from:{
             type:Number
          },
-         pers:{
+         percentage:{
             type:Number
          }
 
