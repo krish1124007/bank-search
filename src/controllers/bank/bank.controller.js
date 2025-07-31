@@ -21,7 +21,7 @@ const modesl = {
 }
 
 const createBank = asyncHandler(async (req, res) => {
-  const { bank_details, home_loan, mortgage_loan, commercial_loan, industrial_loan, login_fees, insurance, tenor_salaried, tenor_self_employed, geo_limit, age, legal_charges, valuation_charges, extra_work, policy, parallel_funding, contact_number,construction_finance_loan,cgtmse_loan,machinary_loan } = req.body;
+  const { bank_details, home_loan, mortgage_loan, commercial_loan, industrial_loan, login_fees, insurance, tenor_salaried, tenor_self_employed, geo_limit, age, legal_charges, valuation_charges, extra_work, policy, parallel_funding,construction_finance_loan,cgtmse_loan,machinary_loan , processing_fees } = req.body;
 
   //creating  objects
   const home_loan_id = await objectMaker(HomeLoan, home_loan, res);
@@ -54,6 +54,7 @@ const createBank = asyncHandler(async (req, res) => {
       extra_work,
       policy: policy_id,
       parallel_funding,
+      processing_fees
       
     }
   )
