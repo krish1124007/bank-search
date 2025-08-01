@@ -91,8 +91,18 @@ const getAllUserInformation = asyncHandler(async(req , res)=>{
     )
 })
 
+const deleteAlluser = asyncHandler(async(req,res)=>{
+  const del = await User.deleteMany({});
+
+  return res.status(200)
+  .json(
+    new ApiResponse(200, "all user delete successfully" , {success:true , data:"delete successfully"})
+  )
+})
+
 export {
     saveUserInforamtion,
     getUserInformation,
-    getAllUserInformation
+    getAllUserInformation,
+    deleteAlluser
 }

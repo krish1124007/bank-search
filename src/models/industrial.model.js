@@ -47,20 +47,9 @@ const IndustrialPurchaseSchema = new mongoose.Schema({
 
 
     },
-     LTV:[
-        {
-         to:{
-            type:Number
-         },
-         from:{
-            type:Number
-         },
-         percentage:{
-            type:Number
-         }
-
-        }
-    ]
+     LTV:{
+        type:String
+     }
     ,
     loan_ticket_size:{
         to:{
